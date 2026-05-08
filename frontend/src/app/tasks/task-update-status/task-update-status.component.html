@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div>
+    <label for="status">Status</label>
+    <select id="status" formControlName="status">
+      @for (s of statuses; track s) {
+        <option [value]="s">{{ s }}</option>
+      }
+    </select>
+  </div>
+
+  @if (errorMessage) {
+    <div role="alert">{{ errorMessage }}</div>
+  }
+
+  <button type="submit" [disabled]="loading">
+    {{ loading ? 'Salvando...' : 'Salvar Status' }}
+  </button>
+</form>
