@@ -1,0 +1,41 @@
+@if (task) {
+  <article>
+    <h1>{{ task.title }}</h1>
+
+    <dl>
+      <dt>Descrição</dt>
+      <dd>{{ task.description ?? '—' }}</dd>
+
+      <dt>Prioridade</dt>
+      <dd>{{ task.priority }}</dd>
+
+      <dt>Status</dt>
+      <dd>{{ task.status }}</dd>
+
+      <dt>Data Limite</dt>
+      <dd>{{ task.dueDate ?? '—' }}</dd>
+
+      <dt>Criada em</dt>
+      <dd>{{ task.createdAt }}</dd>
+
+      @if (task.completedAt) {
+        <dt>Concluída em</dt>
+        <dd>{{ task.completedAt }}</dd>
+      }
+    </dl>
+
+    <app-task-update-status [task]="task" (statusUpdated)="onStatusUpdated($event)" />
+
+    @if (errorMessage) {
+      <div role="alert">{{ errorMessage }}</div>
+    }
+
+    <button (click)="deleteTask()" [disabled]="loading">
+      {{ loading ? 'Excluindo...' : 'Excluir Tarefa' }}
+    </button>
+  </article>
+} @else if (errorMessage) {
+  <p role="alert">{{ errorMessage }}</p>
+} @else {
+  <p>Carregando...</p>
+}

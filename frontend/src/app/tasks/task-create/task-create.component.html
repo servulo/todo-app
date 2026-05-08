@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Nova Tarefa</h1>
+
+  <div>
+    <label for="title">Título *</label>
+    <input id="title" type="text" formControlName="title" />
+    @if (form.get('title')?.invalid && form.get('title')?.touched) {
+      <span role="alert">O título é obrigatório</span>
+    }
+  </div>
+
+  <div>
+    <label for="description">Descrição</label>
+    <textarea id="description" formControlName="description" rows="3"></textarea>
+  </div>
+
+  <div>
+    <label for="priority">Prioridade</label>
+    <select id="priority" formControlName="priority">
+      @for (p of priorities; track p) {
+        <option [value]="p">{{ p }}</option>
+      }
+    </select>
+  </div>
+
+  <div>
+    <label for="dueDate">Data Limite</label>
+    <input id="dueDate" type="date" formControlName="dueDate" />
+  </div>
+
+  @if (errorMessage) {
+    <div role="alert">{{ errorMessage }}</div>
+  }
+
+  <button type="submit" [disabled]="loading">
+    {{ loading ? 'Criando...' : 'Criar Tarefa' }}
+  </button>
+</form>

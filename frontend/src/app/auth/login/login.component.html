@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Login</h1>
+
+  <div>
+    <label for="username">Username</label>
+    <input id="username" type="text" formControlName="username" autocomplete="username" />
+    @if (form.get('username')?.invalid && form.get('username')?.touched) {
+      <span role="alert">O username é obrigatório</span>
+    }
+  </div>
+
+  <div>
+    <label for="password">Senha</label>
+    <input id="password" type="password" formControlName="password" autocomplete="current-password" />
+    @if (form.get('password')?.invalid && form.get('password')?.touched) {
+      <span role="alert">A senha é obrigatória</span>
+    }
+  </div>
+
+  @if (errorMessage) {
+    <div role="alert" data-testid="error-message">{{ errorMessage }}</div>
+  }
+
+  <button type="submit" [disabled]="loading">
+    {{ loading ? 'Entrando...' : 'Entrar' }}
+  </button>
+</form>

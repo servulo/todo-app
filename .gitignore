@@ -1,0 +1,45 @@
+# Java / Maven / Quarkus
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+.eclipse/
+.vscode/
+
+# Node.js / Angular
+node_modules/
+dist/
+.tmp/
+out-tsc/
+.angular/
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# JWT keys (never commit private keys)
+*.pem
+!publickey.pem
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Test coverage
+coverage/
